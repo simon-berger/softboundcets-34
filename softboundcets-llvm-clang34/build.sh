@@ -14,9 +14,6 @@ BUILD_DIR=${SCRIPT_DIR}/build
 if [ ! -d "${BUILD_DIR}" ]; then
   mkdir ${BUILD_DIR}
   cd ${BUILD_DIR}
-  ./../configure --enable-optimized --prefix=/home/simon/Dokumente/Masterarbeit_Lokal/softboundcets-34/softboundcets-llvm-clang34/build
-  make -j4
-else
-  cd ${BUILD_DIR}
-  make update
+  ./../configure --enable-optimized
+  make -j8
 fi

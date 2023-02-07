@@ -1,1 +1,4 @@
 build/
+simple_tests_results/
+softboundcets-lib/*.a
+softboundcets-lib/*.o
