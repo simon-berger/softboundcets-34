@@ -27,7 +27,7 @@ mkdir ${RESULT_DIR}
 ./${SCRIPT_DIR}/../softboundcets-lib/build.sh > /dev/null 2>&1
 
 # Set llvm dir
-LLVM_DIR=${SCRIPT_DIR}/../softboundcets-llvm-clang34/build/Release+Asserts/bin
+LLVM_DIR=${SCRIPT_DIR}/../softboundcets-llvm-clang34/build/Debug+Asserts/bin
 
 # Set softboundcets dir
 SOFTBOUNDCETS_DIR=${SCRIPT_DIR}/../softboundcets-lib
