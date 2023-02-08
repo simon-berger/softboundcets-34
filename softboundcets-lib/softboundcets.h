@@ -1278,6 +1278,15 @@ __WEAK_INLINE void __softboundcets_check_remove_from_free_map(size_t ptr_key, vo
   }
   return;
 }
+                
+#ifdef __SOFTBOUNDCETS_TEMPORAL
+
+ __METADATA_INLINE void __softboundcets_metadata_load_vector(void* addr_of_ptr, 
+							     size_t* key, 
+							     void** lock, 
+							     int index){
+
+#else
 
  __METADATA_INLINE void __softboundcets_metadata_load_vector(void* addr_of_ptr, 
 							     void** base, 
@@ -1286,25 +1295,55 @@ __WEAK_INLINE void __softboundcets_check_remove_from_free_map(size_t ptr_key, vo
 							     void** lock, 
 							     int index){
 
+#endif 
+
    size_t val = index * 8;
    size_t addr = (size_t) addr_of_ptr;
    addr = addr + val;
 
-   __softboundcets_metadata_load((void*) addr, base, bound, key, lock);   
+#ifdef __SOFTBOUNDCETS_TEMPORAL
+
+  __softboundcets_metadata_load((void*) addr, key, lock);   
+
+#else
+
+  __softboundcets_metadata_load((void*) addr, base, bound, key, lock);   
+
+#endif 
 
  }
 
- __METADATA_INLINE void __softboundcets_metadata_store_vector(void* addr_of_ptr, 
+ #ifdef __SOFTBOUNDCETS_TEMPORAL
+
+__METADATA_INLINE void __softboundcets_metadata_store_vector(void* addr_of_ptr, 
+							      size_t key, 
+							      void* lock, 
+							     int index){
+
+#else
+
+__METADATA_INLINE void __softboundcets_metadata_store_vector(void* addr_of_ptr, 
 							      void* base, 
 							      void* bound, 
 							      size_t key, 
 							      void* lock, 
 							      int index){
+
+#endif 
+
    size_t val = index * 8;
    size_t addr = (size_t) addr_of_ptr;
    addr = addr + val;
 
-   __softboundcets_metadata_store((void*)addr, base, bound, key, lock);
+#ifdef __SOFTBOUNDCETS_TEMPORAL
+
+  __softboundcets_metadata_store((void*)addr, key, lock);
+
+#else
+
+  __softboundcets_metadata_store((void*)addr, base, bound, key, lock);
+
+#endif 
    
  }
 
