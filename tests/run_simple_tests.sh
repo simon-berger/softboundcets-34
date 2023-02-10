@@ -37,8 +37,8 @@ ${LLVM_DIR}/clang -O0 -S -emit-llvm ${TEST_FILE} -o ${RESULT_DIR}/${TEST_NAME}_n
 clang -O0 ${TEST_FILE} -o ${RESULT_DIR}/${TEST_NAME}_no_CETS.bin
 
 # Build with CETS using compiled clang
-${LLVM_DIR}/clang -O0 -S -emit-llvm -fsoftboundcets ${TEST_FILE} -o ${RESULT_DIR}/${TEST_NAME}_CETS.ll
-${LLVM_DIR}/clang -O0 -fsoftboundcets ${TEST_FILE} -o ${RESULT_DIR}/${TEST_NAME}_CETS.bin -L ${SOFTBOUNDCETS_DIR} -lm -lrt
+${LLVM_DIR}/clang -O0 -S -emit-llvm -fsoftboundcets -mllvm -softboundcets_disable_spatial_safety ${TEST_FILE} -o ${RESULT_DIR}/${TEST_NAME}_CETS.ll
+${LLVM_DIR}/clang -O0 -fsoftboundcets -mllvm -softboundcets_disable_spatial_safety ${TEST_FILE} -o ${RESULT_DIR}/${TEST_NAME}_CETS.bin -L ${SOFTBOUNDCETS_DIR} -lm -lrt
 
 # Create SVFGs
 #wpa -nander -svfg -dump-vfg ${RESULT_DIR}/${TEST_NAME}_no_CETS.ll
