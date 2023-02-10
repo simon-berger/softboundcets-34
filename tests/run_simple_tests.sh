@@ -32,8 +32,8 @@ LLVM_DIR=${SCRIPT_DIR}/../softboundcets-llvm-clang34/build/Debug+Asserts/bin
 # Set softboundcets dir
 SOFTBOUNDCETS_DIR=${SCRIPT_DIR}/../softboundcets-lib
 
-# Build without CETS using default clang
-clang -O0 -S -emit-llvm ${TEST_FILE} -o ${RESULT_DIR}/${TEST_NAME}_no_CETS.ll
+# Build without CETS
+${LLVM_DIR}/clang -O0 -S -emit-llvm ${TEST_FILE} -o ${RESULT_DIR}/${TEST_NAME}_no_CETS.ll
 clang -O0 ${TEST_FILE} -o ${RESULT_DIR}/${TEST_NAME}_no_CETS.bin
 
 # Build with CETS using compiled clang
